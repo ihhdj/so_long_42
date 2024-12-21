@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:31:37 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/21 19:36:30 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/21 20:29:42 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	load_textures(t_game *game)
 	int	height;
 
 	game->background = mlx_xpm_file_to_image(game->mlx, "xpm/grass.xpm", &width, &height);
-	game->wall = mlx_xpm_file_to_image(game->mlx, "xpm/wall.xpm", &width, &height);
+	game->wall = mlx_xpm_file_to_image(game->mlx, "xpm/trees.xpm", &width, &height);
 	game->player = mlx_xpm_file_to_image(game->mlx, "xpm/chill.xpm", &width, &height);
 	game->collec = mlx_xpm_file_to_image(game->mlx, "xpm/gold.xpm", &width, &height);
 	game->exit = mlx_xpm_file_to_image(game->mlx, "xpm/exit.xpm", &width, &height);
