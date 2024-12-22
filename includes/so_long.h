@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:54:31 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/21 18:58:16 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/21 20:51:52 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	parsing(t_parse	*parse, t_game *game);
 void	load_textures(t_game *game);
 void	init_game(t_game *game, char **map);
 void	draw_map(t_game *game, t_parse *parse);
-int key_handler(int keycode, void *param);
+int 	key_handler(int keycode, void *param);
 int		exit_game(t_game *game);
 void	move_player(t_game *game, t_parse *parse, int newx, int newy);
 #endif

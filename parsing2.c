@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:42:19 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/21 19:08:14 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/21 20:53:43 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	check_items(t_parse *parse)
 			else if (parse->map[i][j] == 'E')
 				parse->eexit += 1;
 			else if (parse->map[i][j] != '1' && parse->map[i][j] != '0')
-				ft_error("Error:\ninvalid caracter", parse);
+				ft_error("Error:\ninvalid character", parse);
 			j++;
 		}
 		i++;
