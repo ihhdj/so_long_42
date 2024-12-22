@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:31:37 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/21 20:29:42 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/22 13:41:21 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,6 @@ int	exit_game(t_game *game)
 void	move_player(t_game *game, t_parse *parse, int newx, int newy)
 {
 	printf("Move: %d\n", game->count);
-	if (newx < 0 || newy < 0 || newx >= game->width || newy >= game->height)
-		return ;
 	if (parse->map[newy][newx] == '1')
 		return ;
 	if (parse->map[newy][newx] == 'C')

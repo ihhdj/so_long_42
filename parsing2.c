@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:42:19 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/21 20:53:43 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/22 13:48:17 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,27 @@ void	init_parse(t_parse *parse)
 
 int	check_items(t_parse *parse)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (parse->map[i])
+	parse->i = 0;
+	while (parse->map[parse->i])
 	{
-		j = 0;
-		while (parse->map[i][j])
+		parse->j = 0;
+		while (parse->map[parse->i][parse->j])
 		{
-			if (parse->map[i][j] == 'C')
+			if (parse->map[parse->i][parse->j] == 'C')
 				parse->item += 1;
-			else if (parse->map[i][j] == 'P')
+			else if (parse->map[parse->i][parse->j] == 'P')
 				parse->pos += 1;
-			else if (parse->map[i][j] == 'E')
+			else if (parse->map[parse->i][parse->j] == 'E')
+			{
+				if (parse->map[parse->i][parse->j - 1] == 'C')
+					ft_error("Error:\nthe map is not valid", parse);
 				parse->eexit += 1;
-			else if (parse->map[i][j] != '1' && parse->map[i][j] != '0')
+			}
+			else if (parse->map[parse->i][parse->j] != '1' && parse->map[parse->i][parse->j] != '0')
 				ft_error("Error:\ninvalid character", parse);
-			j++;
+			parse->j++;
 		}
-		i++;
+		parse->i++;
 	}
 	if (parse->eexit != 1 || parse->pos != 1 || parse->item <= 0)
 		ft_error("Error\ninvalid map", parse);

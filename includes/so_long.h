@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:54:31 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/21 20:51:52 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/22 13:44:39 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef	struct s_parse
 	int		rows;
 	int		start_x;
 	int		start_y;
+	int		i;
+	int		j;
 }	t_parse;
 
 typedef struct s_game
