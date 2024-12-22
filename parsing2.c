@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:42:19 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/22 13:48:17 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/22 16:40:06 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,31 @@ void	init_parse(t_parse *parse)
 	parse->pos = 0;
 }
 
-int	check_items(t_parse *parse)
+int	check_items(t_parse *p)
 {
-	parse->i = 0;
-	while (parse->map[parse->i])
+	p->i = 0;
+	while (p->map[p->i])
 	{
-		parse->j = 0;
-		while (parse->map[parse->i][parse->j])
+		p->j = 0;
+		while (p->map[p->i][p->j])
 		{
-			if (parse->map[parse->i][parse->j] == 'C')
-				parse->item += 1;
-			else if (parse->map[parse->i][parse->j] == 'P')
-				parse->pos += 1;
-			else if (parse->map[parse->i][parse->j] == 'E')
+			if (p->map[p->i][p->j] == 'C')
+				p->item += 1;
+			else if (p->map[p->i][p->j] == 'P')
+				p->pos += 1;
+			else if (p->map[p->i][p->j] == 'E')
 			{
-				if (parse->map[parse->i][parse->j - 1] == 'C')
-					ft_error("Error:\nthe map is not valid", parse);
-				parse->eexit += 1;
+				check_x_y(p);
+				p->eexit += 1;
 			}
-			else if (parse->map[parse->i][parse->j] != '1' && parse->map[parse->i][parse->j] != '0')
-				ft_error("Error:\ninvalid character", parse);
-			parse->j++;
+			else if (p->map[p->i][p->j] != '1' && p->map[p->i][p->j] != '0')
+				ft_error("Error:\ninvalid character", p);
+			p->j++;
 		}
-		parse->i++;
+		p->i++;
 	}
-	if (parse->eexit != 1 || parse->pos != 1 || parse->item <= 0)
-		ft_error("Error\ninvalid map", parse);
+	if (p->eexit != 1 || p->pos != 1 || p->item <= 0)
+		ft_error("Error\ninvalid map", p);
 	return (1);
 }
 

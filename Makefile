@@ -6,11 +6,11 @@
 #    By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/06 16:24:58 by ihhadjal          #+#    #+#              #
-#    Updated: 2024/12/12 11:46:44 by ihhadjal         ###   ########.fr        #
+#    Updated: 2024/12/22 16:39:58 by ihhadjal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = parsing.c so_long.c parsing2.c floodfill.c
+SRCS = parsing.c so_long.c parsing2.c floodfill.c utils.c
 OBJS = ${SRCS:.c=.o}
 NAME = so_long
 CC = gcc
