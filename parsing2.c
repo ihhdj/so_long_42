@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:42:19 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/22 16:40:06 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/23 17:34:45 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	check_items(t_parse *p)
 				p->pos += 1;
 			else if (p->map[p->i][p->j] == 'E')
 			{
-				check_x_y(p);
 				p->eexit += 1;
 			}
 			else if (p->map[p->i][p->j] != '1' && p->map[p->i][p->j] != '0')

@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:39:00 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/22 13:36:32 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/23 16:35:58 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,13 @@
 void	flood_fill(char	**map, int x, int y, t_parse *p)
 {
 	if (x < 0 || y < 0 || y >= p->count || x >= p->colonne_map
-		|| ft_strchr("1V", map[y][x]))
+		|| ft_strchr("1VE", map[y][x]))
 		return ;
-	else
-	{
-		map[y][x] = 'V';
-		flood_fill(map, x + 1, y, p);
-		flood_fill(map, x - 1, y, p);
-		flood_fill(map, x, y + 1, p);
-		flood_fill(map, x, y - 1, p);
-	}
+	map[y][x] = 'V';
+	flood_fill(map, x + 1, y, p);
+	flood_fill(map, x - 1, y, p);
+	flood_fill(map, x, y + 1, p);
+	flood_fill(map, x, y - 1, p);
 }
 
 int	find_pos(t_parse *parse)
@@ -44,15 +41,15 @@ int	find_pos(t_parse *parse)
 			{
 				parse->start_x = x;
 				parse->start_y = y;
-				break ;
+				return (1) ;
 			}
 			x++;
 		}
 		y++;
 	}
 	if (parse->start_x == -1 || parse->start_y == -1)
-		ft_error("Error:\nno starting point found", parse);
-	return (1);
+	ft_error("Error:\nno starting point found", parse);
+	return (0);
 }
 
 char	**copy_map(t_parse *parse)
@@ -85,19 +82,26 @@ void	print_map(char **map)
 	write(1, "\n", 2);
 }
 
-void	check_flood(t_parse *parse)
+void	check_flood(t_parse *p)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (parse->copy[i])
+	if (p->collectibles > 0)
+		ft_error("Error:\nthe map is not valid", p);
+	while (i < p->count)
 	{
 		j = 0;
-		while (parse->copy[i][j])
+		while (j < p->colonne_map)
 		{
-			if (parse->copy[i][j] == 'E' || parse->copy[i][j] == 'C')
-				ft_error("Error:\nplayer cannot reach everything", parse);
+			if (p->copy[i][j] == 'C')
+				ft_error("Error:\nplayer cannot reach all collectibles", p);
+			if (p->copy[i][j] == 'E')
+				if (p->copy[i + 1][j] != 'V' && p->copy[i - 1][j] != 'V'
+					&& p->copy[i][j + 1] != 'V'
+					&& p->copy[i][j - 1] != 'V')
+					ft_error("Error:\nplayer cannot reach the exit", p);
 			j++;
 		}
 		i++;

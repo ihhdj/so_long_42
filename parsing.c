@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:16:32 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/22 14:23:57 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/23 17:50:27 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,16 @@ void	stock_map(char *filename, t_parse *parse)
 		exit(EXIT_FAILURE);
 	ligne = get_next_line(fd);
 	if (!ligne)
+	{
+		ft_printf("Error\nfile is empty");
 		exit(EXIT_FAILURE);
+	}
 	while (ligne)
 	{
 		if (ligne[ft_strlen(ligne) - 1] == '\n')
 			ligne[ft_strlen(ligne) - 1] = '\0';
-		parse->map[i++] = ligne;
+		parse->map[i++] = ft_strdup(ligne);
+		free(ligne);
 		ligne = get_next_line(fd);
 	}
 	parse->map[i] = NULL;
@@ -97,5 +101,7 @@ int	main(int argc, char **argv)
 	check_file(argv[1], &parse);
 	stock_map(argv[1], &parse);
 	parsing(&parse, &game);
+	mlx_destroy_display(game.mlx);
+	free(game.mlx);
 	return (0);
 }

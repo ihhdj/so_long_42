@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:31:37 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/22 18:37:55 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:07:35 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	parsing(t_parse *parse, t_game *game)
 	parse->copy = copy_map(parse);
 	flood_fill(parse->copy, parse->start_x, parse->start_y, parse);
 	check_flood(parse);
+	print_map(parse->copy);
 	init_game(game, parse->copy);
 	load_textures(game);
 	draw_map(game, parse);
@@ -29,11 +30,10 @@ void	parsing(t_parse *parse, t_game *game)
 	game->total_collectibles = parse->item;
 	game->collected = 0;
 	game->parse = parse;
+	free_map(parse->copy);
 	mlx_hook(game->w, 2, 1L << 0, key_handler, game);
 	mlx_hook(game->w, 17, 0, exit_game, game);
 	mlx_loop(game->mlx);
-	free_map(parse->copy);
-	free_map(parse->map);
 }
 
 void	init_game(t_game *game, char **map)
@@ -70,7 +70,7 @@ void	load_textures(t_game *game)
 		|| !game->exit)
 	{
 		ft_printf("Error:\nxpm file is not available");
-		exit(EXIT_FAILURE);
+		exit_game(game, 0);
 	}
 }
 
@@ -121,7 +121,7 @@ int	key_handler(int key, void *param)
 	else if (key == KEY_D)
 		game->newx++;
 	else if (key == KEY_ESC)
-		exit_game(game);
+		exit_game(game, 0);
 	if (parse->map[game->newy][game->newx] == '1')
 		return (0);
 	if (key == KEY_W || key == KEY_S || key == KEY_A || key == KEY_D)

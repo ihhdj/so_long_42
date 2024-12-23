@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:54:31 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/22 18:37:39 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:05:24 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef	struct s_parse
 	int		start_y;
 	int		i;
 	int		j;
+	int		collectibles;
 }	t_parse;
 
 typedef struct s_game
@@ -89,7 +90,6 @@ void	load_textures(t_game *game);
 void	init_game(t_game *game, char **map);
 void	draw_map(t_game *game, t_parse *parse);
 int 	key_handler(int keycode, void *param);
-int		exit_game(t_game *game);
+int		exit_game(t_game *game, int flag);
 void	move_player(t_game *game, t_parse *parse, int newx, int newy);
-int		check_x_y(t_parse *parse);
 #endif
