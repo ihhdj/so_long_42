@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:54:31 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/23 18:05:24 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/25 17:49:02 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define KEY_D 100
 # define KEY_ESC 65307
 
-typedef	struct s_parse
+typedef struct s_parse
 {
 	char	**map;
 	char	**copy;
@@ -46,6 +46,8 @@ typedef	struct s_parse
 	int		i;
 	int		j;
 	int		collectibles;
+	char	*ligne;
+	int		fd;
 }	t_parse;
 
 typedef struct s_game
@@ -64,12 +66,11 @@ typedef struct s_game
 	int		player_y;
 	int		total_collectibles;
 	int		collected;
-	t_parse *parse;
+	t_parse	*parse;
 	int		count;
 	int		newx;
 	int		newy;
 }	t_game;
-
 
 int		check_map_form(t_parse *parse);
 void	stock_map(char *filename, t_parse *parse);
@@ -89,7 +90,8 @@ void	parsing(t_parse	*parse, t_game *game);
 void	load_textures(t_game *game);
 void	init_game(t_game *game, char **map);
 void	draw_map(t_game *game, t_parse *parse);
-int 	key_handler(int keycode, void *param);
+int		key_handler(int keycode, void *param);
 int		exit_game(t_game *game, int flag);
 void	move_player(t_game *game, t_parse *parse, int newx, int newy);
+void	init_game_xpm(t_game *game);
 #endif

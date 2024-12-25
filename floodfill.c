@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:39:00 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/23 16:35:58 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/25 17:47:07 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	find_pos(t_parse *parse)
 	int	y;
 	int	x;
 
-	parse->start_x = -1;
-	parse->start_y = -1;
+	parse->start_x = 0;
+	parse->start_y = 0;
 	y = 0;
 	while (y < parse->count)
 	{
@@ -41,14 +41,14 @@ int	find_pos(t_parse *parse)
 			{
 				parse->start_x = x;
 				parse->start_y = y;
-				return (1) ;
+				return (1);
 			}
 			x++;
 		}
 		y++;
 	}
-	if (parse->start_x == -1 || parse->start_y == -1)
-	ft_error("Error:\nno starting point found", parse);
+	if (parse->start_x == 0 || parse->start_y == 0)
+		ft_error("Error:\nno starting point found", parse);
 	return (0);
 }
 
@@ -88,8 +88,6 @@ void	check_flood(t_parse *p)
 	int	j;
 
 	i = 0;
-	if (p->collectibles > 0)
-		ft_error("Error:\nthe map is not valid", p);
 	while (i < p->count)
 	{
 		j = 0;

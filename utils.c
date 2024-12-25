@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 16:39:07 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/23 18:06:47 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/25 17:57:29 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	move_player(t_game *game, t_parse *parse, int newx, int newy)
 {
-	printf("Move: %d\n", game->count);
+	ft_printf("Move: %d\n", game->count);
 	if (parse->map[newy][newx] == '1')
 		return ;
 	if (parse->map[newy][newx] == 'C')
@@ -53,5 +53,13 @@ int	exit_game(t_game *game, int flag)
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	exit(flag);
-	return (0);
+}
+
+void	init_game_xpm(t_game *game)
+{
+	game->background = NULL;
+	game->wall = NULL;
+	game->player = NULL;
+	game->collec = NULL;
+	game->exit = NULL;
 }

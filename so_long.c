@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:31:37 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/23 18:07:35 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/25 17:59:21 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	parsing(t_parse *parse, t_game *game)
 	flood_fill(parse->copy, parse->start_x, parse->start_y, parse);
 	check_flood(parse);
 	print_map(parse->copy);
+	init_game_xpm(game);
 	init_game(game, parse->copy);
 	load_textures(game);
 	draw_map(game, parse);
@@ -69,8 +70,11 @@ void	load_textures(t_game *game)
 	if (!game->background || !game->wall || !game->player || !game->collec
 		|| !game->exit)
 	{
-		ft_printf("Error:\nxpm file is not available");
-		exit_game(game, 0);
+		ft_printf("Error:\nxpm file is not available\n");
+		mlx_destroy_window(game->mlx, game->w);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		exit(EXIT_FAILURE);
 	}
 }
 

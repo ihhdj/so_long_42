@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:16:32 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/23 17:50:27 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/25 17:47:13 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,31 @@ int	check_map_form(t_parse *parse)
 
 void	stock_map(char *filename, t_parse *parse)
 {
-	char	*ligne;
-	int		fd;
 	int		i;
 
 	i = 0;
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
+	parse->fd = open(filename, O_RDONLY);
+	if (parse->fd < 0)
 		exit(EXIT_FAILURE);
 	parse->count = ft_count_lines(filename, parse);
 	parse->map = malloc(sizeof(char *) * (parse->count + 1));
 	if (!parse->map)
 		exit(EXIT_FAILURE);
-	ligne = get_next_line(fd);
-	if (!ligne)
+	parse->ligne = get_next_line(parse->fd);
+	if (!parse->ligne)
 	{
-		ft_printf("Error\nfile is empty");
+		ft_printf("Error:\nfile is empty");
 		exit(EXIT_FAILURE);
 	}
-	while (ligne)
+	while (parse->ligne)
 	{
-		if (ligne[ft_strlen(ligne) - 1] == '\n')
-			ligne[ft_strlen(ligne) - 1] = '\0';
-		parse->map[i++] = ft_strdup(ligne);
-		free(ligne);
-		ligne = get_next_line(fd);
+		if (parse->ligne[ft_strlen(parse->ligne) - 1] == '\n')
+			parse->ligne[ft_strlen(parse->ligne) - 1] = '\0';
+		parse->map[i++] = ft_strdup(parse->ligne);
+		free(parse->ligne);
+		parse->ligne = get_next_line(parse->fd);
 	}
 	parse->map[i] = NULL;
-	close (fd);
 }
 
 int	check_file(char *map, t_parse *parse)
