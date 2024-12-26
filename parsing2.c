@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:42:19 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/25 16:03:52 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/26 10:36:18 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	ft_error(char *str, t_parse *parse)
 	ft_printf(str);
 	if (parse->map != NULL)
 		free_map(parse->map);
+	else if (parse->copy != NULL)
+		free_map(parse->copy);
 	exit(EXIT_FAILURE);
 }
 

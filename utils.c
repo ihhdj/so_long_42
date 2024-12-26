@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 16:39:07 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/25 17:57:29 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/26 10:55:32 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	move_player(t_game *game, t_parse *parse, int newx, int newy)
 	if (parse->map[newy][newx] == 'E')
 	{
 		if (game->collected == game->total_collectibles)
-			exit_game(game, 1);
+			exit_game(game, 0);
 		return ;
 	}
 	parse->map[game->player_y][game->player_x] = '0';

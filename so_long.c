@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:31:37 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/25 17:59:21 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/26 10:52:40 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parsing(t_parse *parse, t_game *game)
 	check_flood(parse);
 	print_map(parse->copy);
 	init_game_xpm(game);
-	init_game(game, parse->copy);
+	init_game(game, parse->map);
 	load_textures(game);
 	draw_map(game, parse);
 	game->player_x = parse->start_x;

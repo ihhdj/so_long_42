@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 17:39:00 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/25 17:47:07 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2024/12/26 10:46:19 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ char	**copy_map(t_parse *parse)
 
 	i = 0;
 	map_cpy = malloc(sizeof(char *) * (parse->count + 1));
+	if (!map_cpy)
+		exit(EXIT_FAILURE);
 	while (i < parse->count)
 	{
 		map_cpy[i] = ft_strdup(parse->map[i]);
@@ -76,10 +78,10 @@ void	print_map(char **map)
 	while (map[i])
 	{
 		ft_printf(map[i]);
-		write(1, "\n", 2);
+		write(1, "\n", 1);
 		i++;
 	}
-	write(1, "\n", 2);
+	write(1, "\n", 1);
 }
 
 void	check_flood(t_parse *p)
@@ -94,7 +96,9 @@ void	check_flood(t_parse *p)
 		while (j < p->colonne_map)
 		{
 			if (p->copy[i][j] == 'C')
+			{
 				ft_error("Error:\nplayer cannot reach all collectibles", p);
+			}
 			if (p->copy[i][j] == 'E')
 				if (p->copy[i + 1][j] != 'V' && p->copy[i - 1][j] != 'V'
 					&& p->copy[i][j + 1] != 'V'
