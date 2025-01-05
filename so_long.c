@@ -6,7 +6,7 @@
 /*   By: ihhadjal <ihhadjal@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:31:37 by ihhadjal          #+#    #+#             */
-/*   Updated: 2024/12/26 10:52:40 by ihhadjal         ###   ########.fr       */
+/*   Updated: 2025/01/05 19:41:11 by ihhadjal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	load_textures(t_game *game)
 	int	width;
 	int	height;
 
+	width = 0;
+	height = 0;
 	game->background = mlx_xpm_file_to_image(game->mlx,
 			"xpm/grass.xpm", &width, &height);
 	game->wall = mlx_xpm_file_to_image(game->mlx,
